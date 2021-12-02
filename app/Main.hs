@@ -13,7 +13,7 @@ main = do
   expect "Failed to write configuration file" $ writeConfig config
   printf "Year %d, Day %d:\n" (year config) (day config)
   input <- expect "Failed to fetch input" $ fetchInput config
-  let d1 = setup input :: Day1
-  print (part1 d1)
-  print (part2 d1)
+  let d2 = setup input :: Day2
+  print (part1 d2)
+  print (part2 d2)
   putStrLn "done!"
