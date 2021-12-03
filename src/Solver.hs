@@ -1,9 +1,11 @@
-module Solver (Solver (..), Day1 (..), Day2 (..)) where
+module Solver (Solver (..), Day1 (..), Day2 (..), Day3 (..)) where
 
+import Data.Bits (Bits (shiftL, (.|.)), shift)
 import Data.Char (isLetter)
 import Data.List (partition)
 import Data.Text (Text, lines, unpack)
 import Data.Word (Word64)
+import Debug.Trace (trace, traceId)
 import Prelude hiding (lines)
 
 class Solver solver where
@@ -50,3 +52,24 @@ instance Solver Day2 where
 
   part1 (Day2 xs) = uncurry (*) $ foldl matchDirection (0, 0) xs
   part2 (Day2 xs) = let (x, y, _) = foldl matchDirection2 (0, 0, 0) xs in x * y
+
+newtype Day3 = Day3 [[Bool]]
+
+parseBinary :: [Bool] -> Int
+parseBinary = foldl addBit 0
+  where
+    addBit n b = shiftL n 1 .|. (if b then 1 else 0)
+
+instance Solver Day3 where
+  setup = Day3 . map (map toBit . unpack) . lines
+    where
+      toBit c = c == '1'
+
+  part1 (Day3 allBits) = gamma * epsilon
+    where
+      frequencies = (\(ones, total) -> map (/ total) ones) $ foldl countOnes (repeat 0, 0) allBits
+      countOnes (ones, total) bits = (zipWith (+) ones (map (\b -> if b then 1 else 0) bits), total + 1)
+      gamma = parseBinary $ map (> 0.5) frequencies
+      epsilon = parseBinary $ map (<= 0.5) frequencies
+
+  part2 (Day3 _) = error "WIP"
