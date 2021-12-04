@@ -12,7 +12,7 @@ bug-reports:    https://github.com/MisterPeModder/haskell-aoc/issues
 author:         MisterPeModder
 maintainer:     yguaye@gmail.com
 copyright:      2021 Yanis Guaye
-license:        BSD3
+license:        Apache-2.0
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
@@ -25,11 +25,15 @@ source-repository head
 
 library
   exposed-modules:
-      AOCConfig
-      Error
-      Input
-      Lib
-      Solver
+      AOC
+      AOC.Config
+      AOC.Error
+      AOC.Input
+      AOC.Solutions
+      AOC.Solutions.Day01
+      AOC.Solutions.Day02
+      AOC.Solutions.Day03
+      AOC.Solver
   other-modules:
       Paths_haskell_aoc
   hs-source-dirs:
@@ -51,7 +55,7 @@ executable haskell-aoc-exe
   other-modules:
       Paths_haskell_aoc
   hs-source-dirs:
-      app
+      ./
   ghc-options: -threaded -O2 -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=2.0.2.0

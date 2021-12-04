@@ -1,7 +1,7 @@
 name:                haskell-aoc
 version:             0.1.0.0
 github:              "MisterPeModder/haskell-aoc"
-license:             BSD3
+license:             Apache-2.0
 author:              "MisterPeModder"
 maintainer:          "yguaye@gmail.com"
 copyright:           "2021 Yanis Guaye"
@@ -29,7 +29,7 @@ library:
 executables:
   haskell-aoc-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         .
     ghc-options:
     - -threaded
     - -O2

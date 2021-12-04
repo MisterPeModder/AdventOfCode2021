@@ -1,17 +1,15 @@
 {-# LANGUAGE DeriveGeneric #-}
 
-module AOCConfig (AOCConfig (..), aocDirectory, defaultConfig, readConfig, readConfigOrDefault, writeConfig) where
+module AOC.Config (AOCConfig (..), aocDirectory, defaultConfig, readConfig, readConfigOrDefault, writeConfig) where
 
-import Control.Exception (IOException, handle)
+import AOC.Error (Error (..), ResultT, handleIOException, justOrThrow, liftResult)
 import Control.Monad.Trans.Class (MonadTrans (lift))
-import Control.Monad.Trans.Except (ExceptT (ExceptT), mapExceptT, runExceptT)
-import Control.Monad.Trans.Maybe (MaybeT (MaybeT), maybeToExceptT)
+import Control.Monad.Trans.Except (runExceptT)
 import Data.Aeson (decodeStrict', encode)
 import Data.Aeson.Types (FromJSON, ToJSON (toEncoding), defaultOptions, genericToEncoding)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as LBS
 import Data.Either (fromRight)
-import Error (Error (..), Result, ResultT, handleIOException, justOrThrow, liftResult)
 import GHC.Generics (Generic)
 import System.Directory (createDirectoryIfMissing)
 import Prelude hiding (readFile, writeFile)

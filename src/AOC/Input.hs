@@ -1,6 +1,7 @@
-module Input (fetchInput) where
+module AOC.Input (fetchInput) where
 
-import AOCConfig (AOCConfig (AOCConfig, day, token, year), aocDirectory)
+import AOC.Config (AOCConfig (day, token, year), aocDirectory)
+import AOC.Error (Error (..), Result, ResultT, handleHTTPException, handleIOException, justOrThrow, liftResult)
 import Control.Monad (liftM2)
 import Control.Monad.Catch (MonadCatch)
 import Control.Monad.IO.Class (MonadIO (liftIO))
@@ -11,7 +12,6 @@ import Data.List (groupBy)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as E
-import Error (Error (..), Result, ResultT, handleHTTPException, handleIOException, justOrThrow, liftResult)
 import Network.HTTP.Simple
   ( addRequestHeader,
     getResponseBody,
@@ -62,14 +62,14 @@ writeInputCache :: AOCConfig -> Text -> ResultT IO ()
 writeInputCache cfg input = handleIOException $
   lift $ do
     let path = inputCachePath cfg
-    let dirs = concat $ init $ groupBy (\a b -> b /= '/') path
+    let dirs = concat $ init $ groupBy (\_ b -> b /= '/') path
     createDirectoryIfMissing True dirs
     BS.writeFile (inputCachePath cfg) (E.encodeUtf8 input)
 
 -- |
 -- 'fetchInput' @config@ - Attempts to fetch the desired input.
 --
--- Input is read from cache if avalaible, or downloaded from the AOC website using the auth token in the config.
+-- Input is read from cache if available, or downloaded from the AOC website using the auth token in the config.
 fetchInput :: AOCConfig -> ResultT IO Text
 fetchInput cfg = do
   -- try to read previous input from cache

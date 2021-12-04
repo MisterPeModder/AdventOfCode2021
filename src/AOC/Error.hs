@@ -1,9 +1,9 @@
-module Error (Error (..), Result, ResultT, justOrThrow, liftResult, expect, handleIOException, handleHTTPException) where
+module AOC.Error (Error (..), Result, ResultT, justOrThrow, liftResult, expect, handleIOException, handleHTTPException) where
 
 import Control.Exception (IOException)
 import Control.Monad.Catch (MonadCatch, handle)
 import Control.Monad.IO.Class (MonadIO)
-import Control.Monad.Trans.Except (Except, ExceptT, mapExceptT, runExcept, runExceptT)
+import Control.Monad.Trans.Except (Except, ExceptT, mapExceptT, runExceptT)
 import Control.Monad.Trans.Maybe (MaybeT (MaybeT), maybeToExceptT)
 import Data.Functor.Identity (Identity (..))
 import qualified Data.Text as T
