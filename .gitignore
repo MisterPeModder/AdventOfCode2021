@@ -1,2 +1,6 @@
 .stack-work/
 .aoc/
+
+# IntelliJ
+*.iml
+.idea/
