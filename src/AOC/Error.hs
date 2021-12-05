@@ -1,4 +1,15 @@
-module AOC.Error (Error (..), Result, ResultT, justOrThrow, liftResult, expect, handleIOException, handleHTTPException) where
+module AOC.Error
+  ( Error (..),
+    Result,
+    ResultT,
+    expect,
+    expectId,
+    handleIOException,
+    handleHTTPException,
+    justOrThrow,
+    liftResult,
+  )
+where
 
 import Control.Exception (IOException)
 import Control.Monad.Catch (MonadCatch, handle)
@@ -24,12 +35,21 @@ liftResult :: (Monad m) => Result a -> ResultT m a
 liftResult = mapExceptT $ return . runIdentity
 
 -- |
--- 'expect' @message@ @result@ - Unwraps the given results, or kills the program on error.
+-- Unwraps the given result, or kills the program after displaying the given message on error.
 expect :: String -> ResultT IO a -> IO a
 expect msg r = do
   result <- runExceptT r
   case result of
     Left (Error e) -> die $ msg ++ ": " ++ e
+    Right a -> return a
+
+-- |
+-- Unwraps the given result, or kills the program after displaying the content of the error.
+expectId :: ResultT IO a -> IO a
+expectId r = do
+  result <- runExceptT r
+  case result of
+    Left (Error e) -> die e
     Right a -> return a
 
 handleIOException :: (MonadCatch m) => ResultT m a -> ResultT m a
