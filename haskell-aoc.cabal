@@ -17,7 +17,6 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    ChangeLog.md
 
 source-repository head
   type: git
@@ -54,8 +53,6 @@ executable haskell-aoc-exe
   main-is: Main.hs
   other-modules:
       Paths_haskell_aoc
-  hs-source-dirs:
-      ./
   ghc-options: -threaded -O2 -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=2.0.2.0

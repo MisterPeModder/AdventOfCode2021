@@ -37,7 +37,7 @@ downloadInput cfg = handleHTTPException $
     liftIO $ printf "Downloading input from '%s'...\n" url
     -- create the initial request
     initialReq <- parseRequestThrow url
-    -- create the authentification cookie
+    -- create the authentication cookie
     cookie <- liftResult $ headerCookie cfg
     -- add the cookie to the request
     let req = uncurry addRequestHeader cookie initialReq

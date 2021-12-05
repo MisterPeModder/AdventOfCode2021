@@ -8,7 +8,6 @@ copyright:           "2021 Yanis Guaye"
 
 extra-source-files:
 - README.md
-- ChangeLog.md
 
 description:         Please see the README on GitHub at <https://github.com/MisterPeModder/haskell-aoc#readme>
 
@@ -29,7 +28,6 @@ library:
 executables:
   haskell-aoc-exe:
     main:                Main.hs
-    source-dirs:         .
     ghc-options:
     - -threaded
     - -O2
