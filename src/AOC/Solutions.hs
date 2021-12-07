@@ -7,6 +7,7 @@ import AOC.Solutions.Day03 (day03)
 import AOC.Solutions.Day04 (day04)
 import AOC.Solutions.Day05 (day05)
 import AOC.Solutions.Day06 (day06)
+import AOC.Solutions.Day07 (day07)
 import AOC.Solver (Solution)
 
 solutions :: [(Word, Solution)]
@@ -16,7 +17,8 @@ solutions =
     (3, day03),
     (4, day04),
     (5, day05),
-    (6, day06)
+    (6, day06),
+    (7, day07)
   ]
 
 lookupSolution :: Word -> Result Solution

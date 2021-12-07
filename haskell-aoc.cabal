@@ -35,6 +35,7 @@ library
       AOC.Solutions.Day04
       AOC.Solutions.Day05
       AOC.Solutions.Day06
+      AOC.Solutions.Day07
       AOC.Solver
   other-modules:
       Paths_haskell_aoc
