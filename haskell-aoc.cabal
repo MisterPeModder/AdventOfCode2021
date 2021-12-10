@@ -36,6 +36,7 @@ library
       AOC.Solutions.Day05
       AOC.Solutions.Day06
       AOC.Solutions.Day07
+      AOC.Solutions.Day08
       AOC.Solver
   other-modules:
       Paths_haskell_aoc
@@ -43,6 +44,7 @@ library
       src
   build-depends:
       aeson >=2.0.2.0
+    , array
     , base >=4.7 && <5
     , bytestring
     , directory
