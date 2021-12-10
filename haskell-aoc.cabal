@@ -38,6 +38,7 @@ library
       AOC.Solutions.Day07
       AOC.Solutions.Day08
       AOC.Solutions.Day09
+      AOC.Solutions.Day10
       AOC.Solver
   other-modules:
       Paths_haskell_aoc
@@ -63,6 +64,7 @@ executable haskell-aoc-exe
   ghc-options: -threaded -O2 -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=2.0.2.0
+    , array
     , base >=4.7 && <5
     , bytestring
     , directory
@@ -84,6 +86,7 @@ test-suite haskell-aoc-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson >=2.0.2.0
+    , array
     , base >=4.7 && <5
     , bytestring
     , directory
