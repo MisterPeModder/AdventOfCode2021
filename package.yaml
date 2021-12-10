@@ -21,6 +21,7 @@ dependencies:
 - aeson >= 2.0.2.0
 - directory
 - transformers
+- array
 
 library:
   source-dirs: src
